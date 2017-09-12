@@ -1,0 +1,16 @@
+<div class="modal">
+    <div class="modal-dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-label="Close" class="close" type="button" (click)="shown(false)" >
+                    <clr-icon aria-hidden="true" shape="close"></clr-icon>
+                </button>
+                <h3 class="modal-title">{{type}} Location</h3>
+            </div>
+            <div class="modal-body row row-nowrap" >
+                <my-add *ngIf="type==='Add' " [lat]="lat" [lng]="lng" (onShown)="shown(false)" ></my-add>
+                <my-edit *ngIf="type==='Edit' " (onShown)="shown(false)"></my-edit>
+            </div>
+        </div>
+    </div>
+</div>

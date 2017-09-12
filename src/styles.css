@@ -1,1 +1,81 @@
-/* You can add global styles to this file, and also import other style files */
+.icon-blue {
+    border-radius: 30px; width: 30px; height: 30px;
+    background-image: url(./assets/images/block.png);
+    opacity: 1;
+    background-color: #49AFD9;
+    background-repeat: no-repeat;
+    background-position: 5px 4px;
+    background-size: 20px 22px;
+}
+.icon-green {
+    border-radius: 30px; width: 30px; height: 30px;
+    background-image: url(./assets/images/block.png);
+    opacity: 1;
+    background-color: #00BFA9;
+    background-repeat: no-repeat;
+    background-position: 5px 4px;
+    background-size: 20px 22px;
+}
+.icon-yellow {
+    border-radius: 30px; width: 30px; height: 30px;
+    background-image: url(./assets/images/block.png);
+    opacity: 1;
+    background-color: orange;
+    background-repeat: no-repeat;
+    background-position: 5px 4px;
+    background-size: 20px 22px;
+}
+.icon-red {
+    border-radius: 30px; width: 30px; height: 30px;
+    background-image: url(./assets/images/block.png);
+    opacity: 0.8;
+    background-color: red;
+    background-repeat: no-repeat;
+    background-position: 5px 4px;
+    background-size: 20px 22px;
+}
+@-webkit-keyframes twinkling-icon-green {
+    from {
+        opacity: 0.1; background-color: #00BFA9;
+        position: absolute; top: 5px; left: 5px;
+        width: 10px; height: 10px; border-radius: 10px;
+    }
+    to {
+        opacity: 0.3; background-color: #00BFA9;
+        position: absolute; top: -30px; left: -30px;
+        width: 90px; height: 90px; border-radius: 90px;
+    }
+}
+.blink-icon-green {
+    -webkit-animation: twinkling-icon-green 3s infinite ease-in-out;
+}
+@-webkit-keyframes twinkling-icon-yellow {
+    from {
+        opacity: 0.1; background-color: orange;
+        position: absolute; top: 5px; left: 5px;
+        width: 10px; height: 10px; border-radius: 10px;
+    }
+    to {
+        opacity: 0.3; background-color: orange;
+        position: absolute; top: -30px; left: -30px;
+        width: 90px; height: 90px; border-radius: 90px;
+    }
+}
+.blink-icon-yellow {
+    -webkit-animation: twinkling-icon-yellow 3s infinite ease-in-out;
+}
+@-webkit-keyframes twinkling-icon-red {
+    from {
+        opacity: 0.1; background-color: red;
+        position: absolute; top: 5px; left: 5px;
+        width: 10px; height: 10px; border-radius: 10px;
+    }
+    to {
+        opacity: 0.3; background-color: red;
+        position: absolute; top: -30px; left: -30px;
+        width: 90px; height: 90px; border-radius: 90px;
+    }
+}
+.blink-icon-red {
+    -webkit-animation: twinkling-icon-red 3s infinite ease-in-out;
+}

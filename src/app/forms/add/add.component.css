@@ -1,0 +1,6 @@
+.form-group label {
+    margin-left: 18px;
+}
+.form-group input {
+    margin-left: -100px; margin-top: -1px; min-width: 150px; max-width: 200px;
+}

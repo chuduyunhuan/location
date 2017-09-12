@@ -1,0 +1,6 @@
+.form-group label {
+    margin-left: 18px;
+}
+.form-group input, select {
+    margin-left: -100px; margin-top: -1px; min-width: 150px; width: 200px;
+}

@@ -1,0 +1,5 @@
+<form class="search">
+    <input #city id="search_input" type="text" placeholder="Go to......" (keyup)="searchAndLocate(city.value);" >
+    <label for="search_input" (click)="searchAndLocate(city.value); city.value='';"></label>
+    <div class="verticle-line"></div>
+</form>
