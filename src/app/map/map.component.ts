@@ -5,6 +5,8 @@ import 'leaflet-contextmenu';
 
 import { ActivatedRoute, Params } from '@angular/router';
 
+import { createHtmlByData } from './create-html';
+
 @Component({
     selector: 'map',
     templateUrl: './map.component.html',
@@ -17,12 +19,11 @@ export class MapComponent implements OnInit {
     geoInfos = [];
     siteIcons = ['icon-blue', 'icon-yellow', 'icon-green', 'icon-red'];
     blinkList = ['blink-icon-blue', 'blink-icon-yellow', 'blink-icon-green', 'blink-icon-red'];
-    modalDataCenter = false;
-    modalInfo = {
-        address: ''
-    };
     vcds = [];
-    siteChecked: string;
+    siteInfos = {
+        address: '',
+        siteCheked: ''
+    };
     showEdit = {
         show: false,
         type: 'Add',
@@ -123,9 +124,10 @@ export class MapComponent implements OnInit {
                     if(!location) return;
                     let icon = this.setDivIcon(this.siteIcons[0]);
                     let marker = L.marker(location, {icon: icon, title: address, opacity: 1, animated: false, firstAnimation: true}).addTo(this.dataCenterGroup);
-                    this.registerMarkerClick(marker, address);
+                    // this.registerMarkerClick(marker, address);
                 });
                 this.map.addLayer(this.dataCenterGroup);
+                this.registerDataCenterClick();
             });
     }
     refreshDataCenterLayer() {
@@ -142,15 +144,33 @@ export class MapComponent implements OnInit {
         return icon;
     }
     registerMarkerClick(marker: any, address: string) {
-        marker.on('click', e => {
-            this.modalDataCenter = true;
-            this.modalInfo.address = address;
-            let start = ~~(Math.random()*(19 - 0) + 0);
-            let end = ~~(Math.random()*(19 - 0) + 0);
-            let order = this.exchange(start, end);
+        let start = ~~(Math.random()*(19 - 0) + 0);
+        let end = ~~(Math.random()*(19 - 0) + 0);
+        let order = this.exchange(start, end);
+        this.mapService.getAllOrgs().subscribe(data => {
+            this.vcds = data.slice(order[0], order[1]);
+            marker.bindPopup(createHtmlByData(this.vcds, address), {maxWidth: 800, closeOnClick: false, offset: [24, 24]});
+        });
+    }
+    registerDataCenterClick() {
+        this.dataCenterGroup.on('click', e => {
+            let latlng = e.latlng;
+            let options = e.layer.options;
+            let content = document.getElementById('popupContent').innerHTML;
+            let popup = L.popup({maxWidth: 800, closeOnClick: false, offset: [24, 24]})
+                .setLatLng(latlng)
+                .setContent(content)
+                .openOn(this.map);
             this.mapService.getAllOrgs().subscribe(data => {
+                let start = ~~(Math.random()*(19 - 0) + 0);
+                let end = ~~(Math.random()*(19 - 0) + 0);
+                let order = this.exchange(start, end);
                 this.vcds = data.slice(order[0], order[1]);
-                this.siteChecked = this.vcds[0].site;
+                this.siteInfos.address = options.title;
+                this.siteInfos.siteCheked = this.vcds[0].site;
+                setTimeout(() => {
+                    popup.setContent(document.getElementById('popupContent').innerHTML);
+                }, 0);
             });
         });
     }
@@ -198,7 +218,7 @@ export class MapComponent implements OnInit {
     }
     registerAnimation(location: Object, className='change-twink-wx', title: string) {
         let icon = this.setDivIcon(className);
-        let marker = L.marker(location, {icon: icon, title: title}).addTo(this.map);
+        let marker = L.marker(location, {icon: icon, title: title, interactive: false}).addTo(this.map);
         setTimeout(() => {
             this.map.removeLayer(marker);
             this.setAnimated(title);
@@ -215,13 +235,10 @@ export class MapComponent implements OnInit {
             }
         });
     }
-    closeModalDataCenter() {
-        this.modalDataCenter = false;
-    }
-    changeSiteChecked(name: string) {
-        this.siteChecked = name;
-    }
     onShown() {
         this.showEdit.show = false;
+    }
+    changeSiteChecked(name: string) {
+        this.siteInfos.siteCheked = name;
     }
 }

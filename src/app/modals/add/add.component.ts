@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { MapService } from '../../service/map.service';
 
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
+import { MustLatitude, MustLongitude } from '../../shared/shared.module';
 @Component({
     selector: 'my-add',
     templateUrl: './add.component.html',
@@ -18,7 +18,8 @@ export class AddComponent implements OnInit {
     country: string;
     description: string;
     submitted = false;
-    mustNumber = /^(-?\d+)(\.\d+)?$/;
+    mustLatitude = MustLatitude;
+    mustLongitude = MustLongitude;
     constructor(
         private mapService: MapService,
         private router: Router

@@ -4,12 +4,12 @@ import { MapService } from '../service/map.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-    selector: 'my-forms',
-    templateUrl: './forms.component.html',
-    styleUrls: ['./forms.component.css']
+    selector: 'my-modals',
+    templateUrl: './modals.component.html',
+    styleUrls: ['./modals.component.css']
 })
 
-export class FormsComponent implements OnInit {
+export class ModalsComponent implements OnInit {
     @Input() type: string;
     @Input() lat: number;
     @Input() lng: number;

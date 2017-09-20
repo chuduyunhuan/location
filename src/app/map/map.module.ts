@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { MapComponent } from './map.component';
 
-import { FormsModule } from '../forms/forms.module';
+import { ModalsModule } from '../modals/modals.module';
 import { MapRoutingModule } from './map-routing.module';
 
 const module = [
-  SharedModule, MapRoutingModule, FormsModule
+  SharedModule, MapRoutingModule, ModalsModule
 ];
 
 @NgModule({

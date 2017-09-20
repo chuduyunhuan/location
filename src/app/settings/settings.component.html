@@ -1,0 +1,33 @@
+<div class="main-container">
+  <div class="content-container">
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+    <nav class="sidenav">
+      <section class="sidenav-content">
+        <h1>Settings</h1>
+        <a routerLink="." class="nav-link active">
+          Location
+        </a>
+        <a href="..." class="nav-link">
+          xxx
+        </a>
+        <section class="nav-group collapsible">
+          <input id="tabexample1" type="checkbox">
+          <label for="tabexample1">Collapsible Nav Element</label>
+          <ul class="nav-list">
+            <li><a class="nav-link">Link 1</a></li>
+            <li><a class="nav-link">Link 2</a></li>
+          </ul>
+        </section>
+        <section class="nav-group">
+          <label>Default Nav Element</label>
+          <ul class="nav-list">
+            <li><a class="nav-link">Link 1</a></li>
+            <li><a class="nav-link">Link 2</a></li>
+          </ul>
+        </section>
+      </section>
+    </nav>
+  </div>
+</div>

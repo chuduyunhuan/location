@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { MapService } from '../../service/map.service';
 
 import { ActivatedRoute, Params, Router } from '@angular/router';
-
+import { MustLatitude, MustLongitude } from '../../shared/shared.module';
 @Component({
     selector: 'my-edit',
     templateUrl: './edit.component.html',
@@ -19,7 +19,8 @@ export class EditComponent implements OnInit {
     country: string;
     description: string;
     submitted = false;
-    mustNumber = /^(-?\d+)(\.\d+)?$/;
+    mustLatitude = MustLatitude;
+    mustLongitude = MustLongitude;
     constructor(
         private mapService: MapService,
         private router: Router

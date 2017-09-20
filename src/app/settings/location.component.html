@@ -1,0 +1,92 @@
+<div>
+  <h2>Location</h2>
+  <div>
+    <button class="btn btn-primary" (click)="addLocation()">
+      <clr-icon shape="add"></clr-icon>
+      Add Location
+    </button>
+    <button class="btn btn-primary" (click)="editLocation(1)" [disabled]="!selectedLocation">
+      <clr-icon shape="edit"></clr-icon>
+      Edit Location
+    </button>
+  </div>
+  <clr-datagrid [(clrDgSingleSelected)]="selectedLocation">
+    <clr-dg-column clrDgField="name">Name</clr-dg-column>
+    <clr-dg-column clrDgField="latitude">Latitude</clr-dg-column>
+    <clr-dg-column clrDgField="longitude">Longitude</clr-dg-column>
+    <clr-dg-column clrDgField="city">City</clr-dg-column>
+    <clr-dg-column clrDgField="country">Country</clr-dg-column>
+    <clr-dg-column clrDgField="numberOfVCD"># vCD</clr-dg-column>
+    <clr-dg-column clrDgField="description">Description</clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let location of locations" [clrDgItem]="location">
+      <clr-dg-cell>{{location.name}}</clr-dg-cell>
+      <clr-dg-cell>{{location.latitude}}</clr-dg-cell>
+      <clr-dg-cell>{{location.longitude}}</clr-dg-cell>
+      <clr-dg-cell>{{location.city}}</clr-dg-cell>
+      <clr-dg-cell>{{location.country}}</clr-dg-cell>
+      <clr-dg-cell>{{location.numberOfVCD}}</clr-dg-cell>
+      <clr-dg-cell>{{location.description}}</clr-dg-cell>
+    </clr-dg-row>
+  </clr-datagrid>
+
+  <clr-modal [(clrModalOpen)]="formOpen" clrModalSize="lg">
+    <h3 class="modal-title">{{formAction | titlecase}} Location</h3>
+    <div class="modal-body">
+      <form [formGroup]="locationForm">
+        <section class="form-block">
+          <div class="form-group">
+            <label for="form-field-name">Name</label>
+            <input id="form-field-name"
+                   type="text"
+                   formControlName="name"
+                   size="45">
+          </div>
+          <div class="form-group">
+            <label for="form-field-latitude">Latitude (-90~90)</label>
+            <input id="form-field-latitude"
+                   type="number"
+                   formControlName="latitude"
+                   size="45">
+          </div>
+          <div class="form-group">
+            <label for="form-field-longitude">Longitude (-180~180)</label>
+            <input id="form-field-longitude"
+                   type="number"
+                   formControlName="longitude"
+                   size="45">
+          </div>
+          <div class="form-group">
+            <label for="form-field-city">City</label>
+            <input id="form-field-city"
+                   type="text"
+                   formControlName="city"
+                   size="45">
+          </div>
+          <div class="form-group">
+            <label for="form-field-country">Country</label>
+            <input id="form-field-country"
+                   type="text"
+                   formControlName="country"
+                   size="45">
+          </div>
+          <div class="form-group">
+            <label for="form-field-description">Description</label>
+            <textarea id="form-field-description"
+                      type="text"
+                      formControlName="description"
+                      size="45">
+            </textarea>
+          </div>
+        </section>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" (click)="formOpen = false">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="saveLocation()"
+              [disabled]="!locationForm.valid || !locationForm.dirty">
+        {{formAction === 'add' ? 'Add' : 'Save'}}
+      </button>
+    </div>
+  </clr-modal>
+</div>
